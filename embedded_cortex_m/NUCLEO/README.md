@@ -9,4 +9,8 @@
 
 ##  Introduction to the Cortex-M Processor Family and the NUCLEO Board
 
+simplified diagram of the Cortex family of processors
+
 <img width="522" height="321" alt="Screenshot from 2026-01-12 13-56-02" src="https://github.com/user-attachments/assets/2da9bfc4-1a15-4b0c-802f-4549f22efa28" />
+
+under the hood of Cortex-M0, Cortex-M3 and Cortex-M4
