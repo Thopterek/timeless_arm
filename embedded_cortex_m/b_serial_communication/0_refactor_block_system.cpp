@@ -15,48 +15,58 @@ DigitalOut alarmLed(LED1);
 DigitalOut incorrectCodeLed(LED3);
 DigitalOut systemBlockedLed(LED2);
 
-gasDetector.mode(PullDown);
-overTempDetector.mode(PullDown);
-pressFirstButton.mode(PullDown);
-pressSecondButton.mode(PullDown);
-dontUseSecondButton.mode(PullDown);
-dontUseFirstButton.mode(PullDown);
-
-// ===[Declaration of public global variables]===
-alarmLED = OFF;
-incorrectCodeLed = OFF;
-systemBlockedLed = OFF;
+// ===[Declaration & Implementation of public global variables]===
 bool alarmState = OFF;
 int counter = 0;
 
 // ===[Declaration of public fns]===
-void inputsInit();
-void outputsInit();
-void updateAlarmOn();
-void checkInput();
+void inputsInit(void);
+void outputsInit(void);
+void alarmActivationUpdate(void);
+void alarmDeactivationUpdate(void);
 
 int main(void) {
+  inputsInit();
+  outputsInit();
   while (true) {
-    // checking inputs
-    if (gasDetector || overTempDetector)
-      alarmState = ON;
-    // updating state
-    alarmLED = alarmState;
-    // logic to check inputs
-    if (counter < 5) {
-      if (pressFirstButton && pressSecondButton && dontUseFirstButton && dontUseSecondButton)
-        incorrectCodeLed = ON;
-      else if (pressSecondButton && pressFirstButton && enterButton) {
-        alarmState = OFF;
-        counter = 0;
-      }
-      else
-        counter++;
-    }
-    else {
-      systemBlockedLed = ON;
-    }
+    alarmActivationUpdate();
+    alarmDeactivationUpdate();
+  }
 }
 
 // ===[Implementation of public fns]===
-void inputsInit();
+void inputsInit(void) {
+  gasDetector.mode(PullDown);
+  overTempDetector.mode(PullDown);
+  pressFirstButton.mode(PullDown);
+  pressSecondButton.mode(PullDown);
+  dontUseSecondButton.mode(PullDown);
+  dontUseFirstButton.mode(PullDown);
+}
+
+void outputsInit(void) {
+  alarmLED = OFF;
+  incorrectCodeLed = OFF;
+  systemBlockedLed = OFF;
+}
+
+void alarmActivationUpdate(void) {
+  if (gasDetector || overTempDetector)
+    alarmState = ON;
+  alarmLED = alarmState;
+}
+
+void alarmDeactivationUpdate(void) {
+  if (counter < 5) {
+    if (pressFirstButton && pressSecondButton && dontUseFirstButton && dontUseSecondButton)
+      incorrectCodeLed = ON;
+    else if (pressSecondButton && pressFirstButton && enterButton) {
+      alarmState = OFF;
+      counter = 0;
+    }
+    else
+      counter++;
+  } else {
+    systemBlockedLed = ON;
+  }
+}
