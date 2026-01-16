@@ -33,3 +33,12 @@ label/directive -> explanation of it
 * .text -> where operation lives, never changes
 * .data -> loading values that cannot be entered as immediate
 * .global -> exposing lables from code to compiler and linker
+
+## Supervisor Calls or System Calls
+
+there are 2 ways to do it
+* call number loaded into r7 (without the 0x900000 prefix)
+* call executed with the command svc 0
+
+also there is option load into specifif register
+* generally into r0 till r3 
