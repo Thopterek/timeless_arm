@@ -42,3 +42,9 @@ there are 2 ways to do it
 
 also there is option load into specifif register
 * generally into r0 till r3 
+
+## Labels
+
+* names a place in the program that you can reference to later
+* there are different types of data section to use labels onto
+    * syntax: label:?   .datatype   data
