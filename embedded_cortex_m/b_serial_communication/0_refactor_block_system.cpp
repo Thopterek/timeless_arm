@@ -1,3 +1,22 @@
+/*! @mainpage First refactored code using doxygen comments
+ * @date Friday, January 16, 2026
+ * @authors Nataniel Dziadzia
+ * @section genDesc General Description
+ *
+ * Playing around with the way the documentation in code can be done
+ * the idea is to be usable as per DoxyGen tool for docs generation
+ *
+ * @section genRem General Remarks
+ * a simple program for a home system with temperature and gas detector
+ *
+ * @section changelog ChangeLog
+ * |   Date  |   Description  |
+ * |:-------:|:--------------:|
+ * |12/01/26 | Start refactor |
+ * |16/01/26 | Finish program |
+ *
+*/
+
 // ===[Libraries]===
 #include "mbed.h"
 #include "arm_book_lib.h"
@@ -32,6 +51,7 @@ int main(void) {
     alarmActivationUpdate();
     alarmDeactivationUpdate();
   }
+  return (0);
 }
 
 // ===[Implementation of public fns]===
