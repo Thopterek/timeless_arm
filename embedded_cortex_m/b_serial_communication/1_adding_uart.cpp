@@ -12,8 +12,7 @@
  * @section changelog ChangeLog
  * |   Date  |   Description  |
  * |:-------:|:--------------:|
- * |12/01/26 | Start refactor |
- * |16/01/26 | Finish program |
+ * |16/01/26 | Start program  |
  *
 */
 
@@ -34,6 +33,10 @@ DigitalOut alarmLed(LED1);
 DigitalOut incorrectCodeLed(LED3);
 DigitalOut systemBlockedLed(LED2);
 
+DigitalIn unbufferedSerial();
+DigitalIn uartUsb();
+
+
 // ===[Declaration & Implementation of public global variables]===
 bool alarmState = OFF;
 int counter = 0;
@@ -43,6 +46,8 @@ void inputsInit(void);
 void outputsInit(void);
 void alarmActivationUpdate(void);
 void alarmDeactivationUpdate(void);
+void uartTask(void);
+void availableCommands(void);
 
 int main(void) {
   inputsInit();
@@ -50,6 +55,7 @@ int main(void) {
   while (true) {
     alarmActivationUpdate();
     alarmDeactivationUpdate();
+    uartTask();
   }
   return (0);
 }
@@ -91,3 +97,22 @@ void alarmDeactivationUpdate(void) {
   }
 }
 
+void uartTask(void) {
+  char receivedChar = '\0';
+  if (uartUsb.readable()) {
+    uartUsb.read(&receivedChar, 1);
+    if (receivedChar == '1') {
+      if (alarmState)
+        uartUsb.write("The alarm is activated\r\n", 24);
+      else
+        uartUsb.write("The alarm is not activated\r\n", 28);
+    }
+    else
+      availableCommands();
+  }
+}
+
+void availableCommands(void) {
+  uartUsb.write("Available command:\r\n", 20);
+  uartUsb.write("Press '1' to get alarm state\r\n\r\n", 36);
+}
