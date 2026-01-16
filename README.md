@@ -7,6 +7,8 @@ in Assembly Language and C](https://web.eece.maine.edu/~zhu/book/tutorials.php)
 
 [ARM Assembly by Example](https://armasm.com/)
 
-# Datasheets
+# Datasheets & Utility
 
 [STM32L010F4/K2](https://www.st.com/resource/en/datasheet/stm32l010f4.pdf)
+
+[ARM system call table](https://syscalls.w3challs.com/?arch=arm_strong)
