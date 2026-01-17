@@ -19,3 +19,15 @@ specific functions registers:
     * 28: V (overflow) -> for addition and substraction is set if overflow occured
 
 ## Memory Overview
+
+for all the purpose of this notes we talk about RAM
+* endianness -> ARM processor  stores bytes in memory by little endian
+  * least significant byte is placed at the lowest memory address
+  * when reading a multi byte number the bytes are arranged in reverse order
+
+## Register VS Memory
+
+* Registers are inside the processor VS Memory is outside of processor
+* Registers are needed to operate on data, processor cannot directly operate on data in memory
+* Registers are addressed by r and a number VS Memory is addressed by number (eg. 0x600f)
+
