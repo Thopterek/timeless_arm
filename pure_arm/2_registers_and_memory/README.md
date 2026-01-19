@@ -30,4 +30,4 @@ for all the purpose of this notes we talk about RAM
 * Registers are inside the processor VS Memory is outside of processor
 * Registers are needed to operate on data, processor cannot directly operate on data in memory
 * Registers are addressed by r and a number VS Memory is addressed by number (eg. 0x600f)
-
+* using .space 128, 1 -> to set value of 128 bytes to 1
